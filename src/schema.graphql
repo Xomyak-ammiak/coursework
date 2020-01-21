@@ -1,0 +1,61 @@
+type Query {
+  goods(filter: String, skip: Int, first: Int, orderBy: ProductOrderByInput): Goods!
+  manufacturers(filter: String, skip: Int, first: Int, orderBy: UserOrderByInput): Manufacturers!
+  product(id: ID!): Product
+}
+
+type Mutation {
+  addProduct(url: String!, name: String!): Product!
+  deleteProduct(id: ID!): Product!
+  signup(email: String!, password: String!, name: String!): AuthPayload
+  login(email: String!, password: String!): AuthPayload
+}
+
+type Subscription {
+  newProduct: Product
+}
+
+type Product {
+  id: ID!
+  name: String!
+  url: String!
+  postedBy: User
+}
+
+enum ProductOrderByInput {
+  name_ASC
+  name_DESC
+  url_ASC
+  url_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+enum UserOrderByInput {
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+}
+
+type AuthPayload {
+  token: String
+  user: User
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  products: [Product!]!
+}
+
+type Goods {
+  products: [Product!]!
+  count: Int!
+}
+
+type Manufacturers{
+  users: [User!]!
+  count: Int!
+}
