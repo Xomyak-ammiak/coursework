@@ -1,8 +1,9 @@
 # coursework
 My course work
 
-Для подключения зависимостей используйте команду yarn install
+нужно вбить последовательность команд в папке с проектом
 
-Далее необходимо запустить prisma с помощью команды prisma deploy
-
-И последнее: создание библеотеки для prisma с помощью команды prisma generate
+yarn install
+yarn global add prisma
+prisma deploy
+prisma generate
